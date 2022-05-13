@@ -6,7 +6,7 @@ requests.packages.urllib3.disable_warnings()
 
 
 class DX():
-    def __init__(self,cookies):
+    def __init__(self, cookies, problemurl, answerurl):
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39'}
         self.headers2 = {
@@ -15,9 +15,11 @@ class DX():
 
         self.cookies = cookies
         self.cookies = {i.split("=")[0]: i.split("=")[1] for i in self.cookies.split("; ")}
+        self.problemurl = problemurl
+        self.answerurl = answerurl
 
     def getproblem(self):
-        url = "https://dangxiao.hnust.edu.cn/index.php?s=/Exam/practice/lib/1"
+        url = self.problemurl
         r = requests.get(url=url, headers=self.headers, cookies=self.cookies, verify=False)
         html = etree.HTML(r.text)
         # lxml 会自动修 HTML ，查看一下 lxml 修正后的结果
@@ -59,7 +61,7 @@ class DX():
 
     def getcorrectanswer(self, problemid, list):
         answerlist = []
-        url = "https://dangxiao.hnust.edu.cn/index.php?s=/exam/practice"
+        url = self.answerurl
         for i in list:
             datas = {problemid: i,
                      "method": "submit"}
@@ -71,7 +73,7 @@ class DX():
                 return answerlist
 
     def getcorrectanswer2(self, problemid, list):
-        url = "https://dangxiao.hnust.edu.cn/index.php?s=/exam/practice"
+        url = self.answerurl
         flag = 0
         answerlist = []
         for i in list:
@@ -91,7 +93,7 @@ class DX():
 
     def getcorrectanswer3(self, problemid, list):
         flag = 0
-        url = "https://dangxiao.hnust.edu.cn/index.php?s=/exam/practice"
+        url = self.answerurl
         answerlist = []
         for i in list:
             for j in list:
@@ -126,7 +128,7 @@ class DX():
         db = pymysql.connect(host='localhost', user='root', password='111111', database='hnustdx')
 
         cursor = db.cursor()
-        sql = "INSERT INTO hqh_question(question_id,question_name,topic,OptionA,OptionB,OptionC,OptionD," \
+        sql = "INSERT INTO hqh_question2(question_id,question_name,topic,OptionA,OptionB,OptionC,OptionD," \
               "correct_answer) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) "
         try:
             cursor.execute(sql,
@@ -157,7 +159,9 @@ class DX():
 
 
 if __name__ == '__main__':
-    cookies="PHPSESSID=vlicns96bfrq8m236pttrnode3"
-    count=2000
-    rick = DX(cookies)
+    cookies = "PHPSESSID=rrmqgc8tglsf7vg44bqcg2dhk4"
+    count = 2000
+    problemurl = "https://dangxiao.hnust.edu.cn/index.php?s=/Exam/practice/lib/2"
+    answerurl = "https://dangxiao.hnust.edu.cn/index.php?s=/exam/practice"
+    rick = DX(cookies, problemurl, answerurl)
     rick.run(count)
