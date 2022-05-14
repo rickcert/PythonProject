@@ -45,6 +45,13 @@ xpath解析
 
 这网站真憨比。。。。。。。
 
+拿到数据在1250道左右
+
+ ![image-20220515003512943](https://cdn.jsdelivr.net/gh/rickhqh/pic/img/202205150035089.png)
+
 哦，还有个笑点
 
  ![image-20220515002604772](https://cdn.jsdelivr.net/gh/rickhqh/pic/img/202205150026854.png)
+## 查题接口
+- https://api.rickblog.icu/hnustdx/?t=t2&s=
+- s 后接题目 t 是选择题库
