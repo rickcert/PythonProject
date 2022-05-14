@@ -159,7 +159,7 @@ class DX():
 
 
 if __name__ == '__main__':
-    cookies = "PHPSESSID=rrmqgc8tglsf7vg44bqcg2dhk4"
+    cookies = "PHPSESSID=1"
     count = 2000
     problemurl = "https://dangxiao.hnust.edu.cn/index.php?s=/Exam/practice/lib/2"
     answerurl = "https://dangxiao.hnust.edu.cn/index.php?s=/exam/practice"
