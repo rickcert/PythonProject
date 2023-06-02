@@ -1,7 +1,7 @@
 # PythonProject
 python是世界上最好的语言
 <div align="center">
-   <img width="160" src="http://q1.qlogo.cn/g?b=qq&nk=210401532&s=640" alt="logo"></br>
+   <img width="160" src="https://blog.rick.icu/rick.jpeg" alt="logo"></br>
 </div>
 
 
